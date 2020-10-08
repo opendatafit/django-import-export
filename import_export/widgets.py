@@ -310,17 +310,11 @@ class JSONWidget(Widget):
     """
 
     def clean(self, value, row=None, *args, **kwargs):
-        print("=================")
-        print("JSONWidget.clean:", value, type(value))
-        print("=================")
         val = super().clean(value)
         if val:
             return val
 
     def render(self, value, obj=None):
-        print("=================")
-        print("JSONWidget.render:", value, type(value))
-        print("=================")
         if value:
             return value
 
