@@ -307,21 +307,16 @@ class JSONWidget(Widget):
     Widget for a JSON object (especially required for jsonb fields in PostgreSQL database.)
 
     :param value: Defaults to JSON format.
-    The widget covers two cases: Proper JSON string with double quotes, else it
-    tries to use single quotes and then convert it to proper JSON.
     """
 
     def clean(self, value, row=None, *args, **kwargs):
         val = super().clean(value)
         if val:
-            try:
-                return json.loads(val)
-            except json.decoder.JSONDecodeError:
-                return json.loads(val.replace("'", "\""))
+            return val
 
     def render(self, value, obj=None):
         if value:
-            return json.dumps(value)
+            return value
 
 
 class ForeignKeyWidget(Widget):
